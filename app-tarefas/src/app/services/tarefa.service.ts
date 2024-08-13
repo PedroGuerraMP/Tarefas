@@ -1,28 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { Tarefa } from '../models/tarefa.model';
 import { mock_tarefa_list } from '../mocks/tarefa.mock';
 
-const baseUrl = 'http://localhost:3000/tarefas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TarefaService {
+  
+  private baseUrl: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.baseUrl = 'http://localhost:3000/tarefas';
+  }
 
   getAll(): Observable<Tarefa[]> {
+    let tarefas: Tarefa[];
     // return this.http.get<Tarefa[]>(baseUrl);
-    return new Observable<Tarefa[]>(observer => {
-      setInterval(() => observer.next(mock_tarefa_list), 100);
-    });
+    return of(mock_tarefa_list);
   }
 
   get(id: number): Observable<Tarefa> {
-    return this.http.get<Tarefa>(`${baseUrl}/${id}`);
+    return this.http.get<Tarefa>(`${this.baseUrl}/${id}`);
   }
 
 }
