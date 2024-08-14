@@ -22,6 +22,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   styleUrl: './detail-tarefa.component.css'
 })
 export class DetailTarefaComponent {
+
   tarefaFormGroup = new FormGroup({
     id: new FormControl(''),
     titulo: new FormControl(''),
@@ -29,4 +30,9 @@ export class DetailTarefaComponent {
     data_vencimento: new FormControl(''),
     status: new FormControl(''),
   });
+
+  saveTarefa() {
+    throw new Error('Method not implemented.');
+  }
+
 }

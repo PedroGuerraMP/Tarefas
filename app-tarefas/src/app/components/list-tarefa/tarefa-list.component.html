@@ -1,39 +1,37 @@
-<div class="container">
-  <div class="row">
-    <span class="h3 col-3">Lista de Tarefas</span>
-    <mat-button-toggle-group [(ngModel)]="selectedFilter" class="col-4 justify-content-center" name="fontStyle" aria-label="Font Style">
-      @for (key of filtrosDataSource.keys(); track key ) {
-        <mat-button-toggle [value]="key" (change)="filtroTarefaChange(key)">{{filtrosDataSource.get(key)}}</mat-button-toggle>
-        } 
-    </mat-button-toggle-group>
-  </div>
-    <mat-accordion>
-    @for (tarefa of tarefaDataSource; track tarefa) {
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="row"> 
-                <div class="col  text-start"> {{tarefa.titulo}} </div>
-                <div class="col text-center"> {{tarefa.data_vencimento}} </div> 
-                <div class="col text-end"> {{ getEnumStatus(tarefa.status)}} </div> 
-            </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div >
-              <div class="p2"> {{tarefa.descricao}} </div>
-            </div>
-            <mat-action-row>
-              <button mat-fab extended (click)="editTarefa(tarefa.id)" class="btn btn-outline-dark d-flex mx-2">
-                <mat-icon>edit</mat-icon>
-                Editar
-              </button>
-              <button mat-fab extended (click)="deleteTarefa(tarefa.id)" class="btn btn-outline-dark d-flex ">
-                <mat-icon>delete</mat-icon>
-                Excluir
-              </button>
-            </mat-action-row>
-          </mat-expansion-panel>
-        } 
-    @empty {
-        <li>There are no items.</li>
-    }
-    </mat-accordion>
+<div class="row">
+  <span class="h3 col-12 col-md-5 mt-1">Lista de Tarefas</span>
+  <mat-button-toggle-group [(ngModel)]="selectedFilter" class="col-8 col-md-6 col-lg-7 justify-content-between">
+    @for (key of filtrosDataSource.keys(); track key ) {
+      <mat-button-toggle [value]="key" (change)="filtroTarefaChange(key)">{{filtrosDataSource.get(key)}}</mat-button-toggle>
+      } 
+  </mat-button-toggle-group>
 </div>
+  <mat-accordion class="row mt-5">
+  @for (tarefa of tarefaDataSource; track tarefa) {
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="row"> 
+              <div class="col text-start"> {{tarefa.titulo}} </div>
+              <div class="col text-center"> {{tarefa.data_vencimento}} </div> 
+              <div class="col text-end"> {{ getEnumStatus(tarefa.status)}} </div> 
+          </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div >
+            <div class="p2"> {{tarefa.descricao}} </div>
+          </div>
+          <mat-action-row>
+            <button mat-fab extended (click)="editTarefa(tarefa.id)" class="btn btn-outline-dark d-flex mx-2">
+              <mat-icon>edit</mat-icon>
+              Editar
+            </button>
+            <button mat-fab extended (click)="deleteTarefa(tarefa.id)" class="btn btn-outline-dark d-flex ">
+              <mat-icon>delete</mat-icon>
+              Excluir
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      } 
+  @empty {
+      <li>There are no items.</li>
+  }
+  </mat-accordion>
