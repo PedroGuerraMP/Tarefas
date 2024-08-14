@@ -21,11 +21,11 @@
               <div class="p2"> {{tarefa.descricao}} </div>
             </div>
             <mat-action-row>
-              <button mat-fab extended class="btn btn-outline-dark d-flex mx-2">
+              <button mat-fab extended (click)="editTarefa(tarefa.id)" class="btn btn-outline-dark d-flex mx-2">
                 <mat-icon>edit</mat-icon>
                 Editar
               </button>
-              <button mat-fab extended class="btn btn-outline-dark d-flex ">
+              <button mat-fab extended (click)="deleteTarefa(tarefa.id)" class="btn btn-outline-dark d-flex ">
                 <mat-icon>delete</mat-icon>
                 Excluir
               </button>

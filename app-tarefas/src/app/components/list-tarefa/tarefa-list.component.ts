@@ -27,6 +27,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tarefa-list.component.css'
 })
 export class TarefaListComponent implements OnInit {
+
   
   readonly panelOpenState = signal(false);
   selectedFilter?: string = "";
@@ -92,4 +93,13 @@ export class TarefaListComponent implements OnInit {
   getEnumStatus(status?: number) {
     return (status == undefined) ? "" : EnumStatusTarefa[status];
   }
+
+  deleteTarefa(arg0: number|undefined) {
+    throw new Error('Method not implemented.');
+  }
+
+  editTarefa(arg0: number|undefined) {
+    throw new Error('Method not implemented.');
+  }
+
 }
