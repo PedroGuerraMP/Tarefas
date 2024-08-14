@@ -24,7 +24,9 @@ export class TarefaService {
   }
 
   get(id: number): Observable<Tarefa> {
-    return this.http.get<Tarefa>(`${this.baseUrl}/${id}`);
+    // return this.http.get<Tarefa>(`${this.baseUrl}/${id}`);
+    let tarefa: Tarefa | undefined = mock_tarefa_list.find(tarefa => tarefa.id == id);
+    return of(tarefa? tarefa : {});
   }
 
 }
