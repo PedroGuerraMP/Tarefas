@@ -40,7 +40,7 @@ throw new Error('Method not implemented.');
     titulo: new FormControl(''),
     descricao: new FormControl(''),
     data_vencimento: new FormControl(new Date()),
-    status: new FormControl(''),
+    status: new FormControl(0),
   });
   
   pageTitle: string = "";
@@ -53,12 +53,13 @@ throw new Error('Method not implemented.');
 
     this.route.params.subscribe((event)=> {
       this.tarefaService.get(event['id']).subscribe((tarefa) => {
+        console.log(tarefa)
         this.tarefaFormGroup.setValue({
           id: (tarefa.id? tarefa.id : 0).toString(),
           titulo: tarefa.titulo? tarefa.titulo : "",
           descricao: tarefa.descricao? tarefa.descricao : "",
           data_vencimento: moment(tarefa.data_vencimento? tarefa.data_vencimento : moment.now()).toDate(),
-          status: tarefa.status? tarefa.status.valueOf().toString() : '0'
+          status: tarefa.status? tarefa.status.valueOf() : 0
         });
         
       })
