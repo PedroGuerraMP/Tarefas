@@ -3,17 +3,26 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {FormsModule} from '@angular/forms';
 
 
-import { Tarefa } from '../../models/tarefa.model';
+import { Tarefa, EnumStatusTarefa } from '../../models/tarefa.model';
 import { TarefaService } from '../../services/tarefa.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-tarefa-list',
   standalone: true,
-  imports: [CommonModule, MatTableModule,MatSlideToggleModule, MatExpansionModule, MatButtonToggleModule, FormsModule ],
+  imports: [
+    CommonModule, 
+    MatTableModule,
+    MatSlideToggleModule, 
+    MatExpansionModule, 
+    MatButtonToggleModule, 
+    FormsModule,
+    MatIconModule
+  ],
   templateUrl: './tarefa-list.component.html',
   styleUrl: './tarefa-list.component.css'
 })
@@ -78,5 +87,9 @@ export class TarefaListComponent implements OnInit {
           break;
       }
     })
+  }
+
+  getEnumStatus(status?: number) {
+    return (status == undefined) ? "" : EnumStatusTarefa[status];
   }
 }

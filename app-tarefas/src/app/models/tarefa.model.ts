@@ -3,11 +3,11 @@ export interface Tarefa {
     titulo?: string;
     descricao?: string;
     data_vencimento?: any;
-    status?: statusTarefa; 
+    status?: EnumStatusTarefa; 
 }
 
-enum statusTarefa {
-    pendente = 0,
-    em_andamento = 1,
-    concluida = 2
+export enum EnumStatusTarefa {
+    "Pendente",
+    "Em andamento",
+    "Concluída"
 }

@@ -11,11 +11,25 @@
     @for (tarefa of tarefaDataSource; track tarefa) {
         <mat-expansion-panel hideToggle>
             <mat-expansion-panel-header>
-              <mat-panel-title> {{tarefa.titulo}} </mat-panel-title>
-              <mat-panel-description> {{tarefa.data_vencimento}} </mat-panel-description>
+              <mat-panel-title class="row"> 
+                <div class="col  text-start"> {{tarefa.titulo}} </div>
+                <div class="col text-center"> {{tarefa.data_vencimento}} </div> 
+                <div class="col text-end"> {{ getEnumStatus(tarefa.status)}} </div> 
+            </mat-panel-title>
             </mat-expansion-panel-header>
-            <p> {{tarefa.descricao}} </p>
-            <p> {{tarefa.status}} </p>
+            <div >
+              <div class="p2"> {{tarefa.descricao}} </div>
+            </div>
+            <mat-action-row>
+              <button mat-fab extended class="btn btn-outline-dark d-flex mx-2">
+                <mat-icon>edit</mat-icon>
+                Editar
+              </button>
+              <button mat-fab extended class="btn btn-outline-dark d-flex ">
+                <mat-icon>delete</mat-icon>
+                Excluir
+              </button>
+            </mat-action-row>
           </mat-expansion-panel>
         } 
     @empty {
