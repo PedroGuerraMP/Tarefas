@@ -1,1 +1,31 @@
-<p>detail-tarefa works!</p>
+<div class="row">
+    <span class="h3 col-3">Lista de Tarefas</span>
+</div>
+<form [formGroup]="tarefaFormGroup" class="mt-5">
+    <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12">
+            <mat-label>Título</mat-label>
+            <input matInput type="text" formControlName="titulo">
+        </mat-form-field>
+        <div  class="col mt-2">
+            <label>Status: </label>
+            <mat-radio-group formControlName="status">
+                <mat-radio-button [checked]="true" [value]="0" class="">Pendente</mat-radio-button>
+                <mat-radio-button [value]="1">Em andamento</mat-radio-button>
+                <mat-radio-button [value]="2">Concluída</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+    <div class="row">
+        <mat-form-field class="col-md-6 col-sm-12">
+            <mat-label>Descrição</mat-label>
+            <input matInput type="text" formControlName="descricao">
+        </mat-form-field>
+        <mat-form-field class="col-md-3 col-sm-12">
+            <mat-label>Data de Vencimento</mat-label>
+            <input matInput formControlName="data_vencimento" [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</form>
