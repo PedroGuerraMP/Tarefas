@@ -5,6 +5,6 @@ import { DetailTarefaComponent } from './components/detail-tarefa/detail-tarefa.
 export const routes: Routes = [
     { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: TarefaListComponent },
-    { path: 'add', component: DetailTarefaComponent },
-    { path: 'edit/:id', component: DetailTarefaComponent },
+    { path: 'add', component: DetailTarefaComponent, title: "Adicionar" },
+    { path: 'edit/:id', component: DetailTarefaComponent, title: "Editar" },
 ];

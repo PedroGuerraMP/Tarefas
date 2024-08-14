@@ -1,11 +1,12 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatIconModule} from '@angular/material/icon';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import {MatIconModule} from '@angular/material/icon';
 
 
 import { Tarefa, EnumStatusTarefa } from '../../models/tarefa.model';
@@ -49,7 +50,6 @@ export class TarefaListComponent implements OnInit {
 
   getTarefas(): void {
     this.tarefaService.getAll().subscribe(tarefas => { 
-      console.log(tarefas[0].id);
       this.tarefaDataSource = tarefas;
     });
   }
