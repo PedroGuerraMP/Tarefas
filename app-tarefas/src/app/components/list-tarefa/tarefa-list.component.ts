@@ -4,6 +4,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
+import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 
 
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     MatExpansionModule, 
     MatButtonToggleModule, 
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   templateUrl: './tarefa-list.component.html',
   styleUrl: './tarefa-list.component.css'

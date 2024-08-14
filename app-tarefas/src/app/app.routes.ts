@@ -6,4 +6,5 @@ export const routes: Routes = [
     { path: '', redirectTo: 'list', pathMatch: 'full' },
     { path: 'list', component: TarefaListComponent },
     { path: 'add', component: DetailTarefaComponent },
+    { path: 'edit/:id', component: DetailTarefaComponent },
 ];
