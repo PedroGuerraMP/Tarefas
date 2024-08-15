@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 
 namespace API_tarefas
@@ -23,6 +24,7 @@ namespace API_tarefas
 
     public class Tarefa
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string titulo { get; set; }
         public string descricao { get; set; }
