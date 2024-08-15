@@ -38,5 +38,23 @@ namespace API_tarefas.Controllers
 
             return CreatedAtAction(nameof(PostTarefa), tarefa);
         }
+
+        [HttpPut(Name = "EditTarefas")]
+        public async Task<ActionResult<Tarefa>> PutTarefa(Tarefa tarefaParam)
+        {
+            var tarefa = await _context.Tarefas.FirstOrDefaultAsync(t=>t.id == tarefaParam.id);
+
+            if (tarefa != null)
+            {
+                tarefa.titulo = tarefaParam.titulo;
+                tarefa.status = tarefaParam.status;
+                tarefa.descricao = tarefaParam.descricao;
+                tarefa.data_vencimento = tarefaParam.data_vencimento;
+                
+                await _context.SaveChangesAsync();
+            }
+
+            return CreatedAtAction(nameof(PostTarefa), tarefa);
+        }
     }
 }
