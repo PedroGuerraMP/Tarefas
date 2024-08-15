@@ -14,19 +14,15 @@ export class TarefaService {
   private baseUrl: string;
 
   constructor(private http: HttpClient) { 
-    this.baseUrl = 'http://localhost:3000/tarefas';
+    this.baseUrl = 'https://localhost:7027/tarefa';
   }
 
   getAll(): Observable<Tarefa[]> {
-    let tarefas: Tarefa[];
-    // return this.http.get<Tarefa[]>(baseUrl);
-    return of(mock_tarefa_list);
+    return this.http.get<Tarefa[]>(this.baseUrl);
   }
 
   get(id: number): Observable<Tarefa> {
-    // return this.http.get<Tarefa>(`${this.baseUrl}/${id}`);
-    let tarefa: Tarefa | undefined = mock_tarefa_list.find(tarefa => tarefa.id == id);
-    return of(tarefa? tarefa : {});
+    return this.http.get<Tarefa>(`${this.baseUrl}/${id}`);
   }
 
 }
