@@ -24,6 +24,12 @@ namespace API_tarefas.Controllers
             return await _context.Tarefas.ToArrayAsync();
         }
 
+        [HttpGet("id", Name = "GetTarefa")]
+        public async Task<ActionResult<Tarefa?>> Get(int id)
+        {
+            return await _context.Tarefas.FindAsync(id);
+        }
+
         [HttpPost(Name = "AddTarefas")]
         public async Task<ActionResult<Tarefa>> PostTarefa(Tarefa tarefa)
         {
