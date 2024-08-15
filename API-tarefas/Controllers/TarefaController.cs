@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.JSInterop.Infrastructure;
 using SQLitePCL;
 
 namespace API_tarefas.Controllers
@@ -54,7 +55,21 @@ namespace API_tarefas.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return CreatedAtAction(nameof(PostTarefa), tarefa);
+            return CreatedAtAction(nameof(PutTarefa), tarefa);
+        }
+
+        [HttpDelete(Name = "DeleteTarefas")]
+        public async Task<ActionResult<bool>> DeleteTarefa(int id)
+        {
+            var tarefa = await _context.Tarefas.FirstOrDefaultAsync(t => t.id == id);
+
+            if (tarefa != null)
+            {
+                _context.Remove(tarefa);
+                await _context.SaveChangesAsync();
+            }
+
+            return CreatedAtAction(nameof(DeleteTarefa), tarefa);
         }
     }
 }
