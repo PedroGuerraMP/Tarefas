@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.JSInterop.Infrastructure;
-using SQLitePCL;
 
 namespace API_tarefas.Controllers
 {
@@ -15,10 +13,10 @@ namespace API_tarefas.Controllers
         private readonly ILogger<TarefaController> _logger;
         private TarefaDbContext _context;
 
-        public TarefaController(ILogger<TarefaController> logger)
+        public TarefaController(ILogger<TarefaController> logger, TarefaDbContext context)
         {
             _logger = logger;
-            _context = new TarefaDbContext();
+            _context = context;
         }
 
         [HttpGet(Name = "GetAllTarefas")]

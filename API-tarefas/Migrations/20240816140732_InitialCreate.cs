@@ -15,12 +15,12 @@ namespace API_tarefas.Migrations
                 name: "Tarefas",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    titulo = table.Column<string>(type: "TEXT", nullable: false),
-                    descricao = table.Column<string>(type: "TEXT", nullable: false),
-                    data_vencimento = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    status = table.Column<int>(type: "INTEGER", nullable: false)
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    data_vencimento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
