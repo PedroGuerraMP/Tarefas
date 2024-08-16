@@ -30,4 +30,8 @@ export class TarefaService {
   put(tarefa:Tarefa): Observable<Tarefa> {
     return this.http.put<Tarefa>(`${this.baseUrl}`, tarefa);
   }
+
+  delete(id:number): Observable<Tarefa> {
+    return this.http.delete<Tarefa>(`${this.baseUrl}/${id}`);
+  }
 }

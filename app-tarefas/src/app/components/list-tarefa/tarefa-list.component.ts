@@ -42,14 +42,14 @@ export class TarefaListComponent implements OnInit {
     [ "status", "Status" ],
   ]);
   
-  constructor(private tarefaService: TarefaService) {}
+  constructor(private _tarefaService: TarefaService) {}
 
   ngOnInit(): void {
     this.getTarefas();
   }
 
   getTarefas(): void {
-    this.tarefaService.getAll().subscribe(tarefas => { 
+    this._tarefaService.getAll().subscribe(tarefas => { 
       this.tarefaDataSource = tarefas;
     });
   }
@@ -96,12 +96,11 @@ export class TarefaListComponent implements OnInit {
     return (status == undefined) ? "" : EnumStatusTarefa[status];
   }
 
-  deleteTarefa(arg0: number|undefined) {
-    throw new Error('Method not implemented.');
-  }
-
-  editTarefa(arg0: number|undefined) {
-    throw new Error('Method not implemented.');
+  deleteTarefa(id: number) {
+    console.log("delete")
+    this._tarefaService.delete(id).subscribe(tarefa => { 
+      this.getTarefas();
+    });
   }
 
 }
