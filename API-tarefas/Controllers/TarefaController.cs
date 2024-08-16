@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop.Infrastructure;
@@ -5,6 +6,7 @@ using SQLitePCL;
 
 namespace API_tarefas.Controllers
 {
+    [EnableCors]
     [ApiController]
     [Route("[controller]")]
     public class TarefaController : ControllerBase
