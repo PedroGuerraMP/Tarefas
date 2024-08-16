@@ -46,13 +46,7 @@ export class TarefaListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTarefas();
-  }
-
-  getTarefas(): void {
-    this._tarefaService.getAll().subscribe(tarefas => { 
-      this.tarefaDataSource = tarefas;
-    });
-  }
+  } 
 
   filtroTarefaChange(tarefaProp: string): void {
     this.tarefaDataSource.sort((a:Tarefa, b:Tarefa) => {
@@ -96,10 +90,19 @@ export class TarefaListComponent implements OnInit {
     return (status == undefined) ? "" : EnumStatusTarefa[status];
   }
 
-  deleteTarefa(id: number) {
-    console.log("delete")
+  deleteOnClick(id: number) {
+    this.deleteTarefa(id);
+  }
+  
+  private deleteTarefa(id:number) {
     this._tarefaService.delete(id).subscribe(tarefa => { 
       this.getTarefas();
+    });
+  }
+
+  private getTarefas(): void {
+    this._tarefaService.getAll().subscribe(tarefas => { 
+      this.tarefaDataSource = tarefas;
     });
   }
 
