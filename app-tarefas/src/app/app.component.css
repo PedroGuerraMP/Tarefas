@@ -1,0 +1,7 @@
+@media (min-width: 1200px) {
+    .container {
+        width: auto;
+        height: 90vh;
+        max-width: 70vw;
+    }
+}
