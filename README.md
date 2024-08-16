@@ -41,7 +41,7 @@ No console PowerShell do Visual Studio execute o comando: dotnet ef database upd
 No Visual Studio, lembre-se de executar o projeto com a configuração http
 ```
 
-### Arquitetura
+## Arquitetura
 
 O sistema foi desenvolvido seguindo os conceitos de Clean Architecture.
 
@@ -63,8 +63,12 @@ Acredito que o sistema já tenha atendido todos os requisitos exigidos, mas para
 - [] Adicionar Regras de negócios para validação no projeto cliente e no servidor
 
 
+##Referências de Estudos
 
-
+https://learn.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio
+https://learn.microsoft.com/pt-br/ef/core/get-started/overview/first-app?tabs=netcore-cli
+https://angular.dev/overview
+https://material.angular.io/
 
 
 
