@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { TarefaService } from '../../services/tarefa.service';
-import { Observable } from 'rxjs';
 import { Tarefa } from '../../models/tarefa.model';
 
 
@@ -32,10 +31,13 @@ import { Tarefa } from '../../models/tarefa.model';
   styleUrl: './detail-tarefa.component.css'
 })
 export class DetailTarefaComponent { 
-  constructor(private tarefaService: TarefaService, private activatedRoute: ActivatedRoute, private router: Router, private toast: NgToastService){  }
+  constructor(
+    private _tarefaService: TarefaService, 
+    private _activatedRoute: ActivatedRoute, 
+    private _router: Router, 
+    private _toastService: NgToastService){  }
   
   pageTitle: string = "";
-  tarefa$?: Observable<Tarefa>;
   tarefaIsValid: boolean = false;
   tarefaFormGroup = new FormGroup({
     id: new FormControl(''),
@@ -46,17 +48,10 @@ export class DetailTarefaComponent {
   });
   
   ngOnInit(){
-    this.activatedRoute.title.subscribe((event) => {
-      this.pageTitle = event? event : "";
-    });
-
-    this.activatedRoute.params.subscribe((event)=> {
-      if(event['id']!){
-        this.tarefaService.get(event['id']).subscribe((tarefa) => {
-          this.setTarefaFormGroupValue(tarefa);
-        })
-      }
-
+    this._activatedRoute.title.subscribe(event => this.pageTitle = event? event : "");
+    this._activatedRoute.params.subscribe((event)=> {
+      if(event['id'])
+        this.getTarefa(event['id']);
     });
   }
 
@@ -64,30 +59,45 @@ export class DetailTarefaComponent {
     if(!this.tarefaFormGroup.valid)
       return;
     
-    if(this.tarefaFormGroup.value["id"] != '')
-      this.editTarefa();
-    else
-      this.createTarefa();
-  }
-
-  createTarefa() {
-    this.tarefaService.post({
+    const tarefa: Tarefa = {
+      id: parseInt(this.tarefaFormGroup.value["id"]? this.tarefaFormGroup.value["id"] : '0'),
       titulo: this.tarefaFormGroup.value["titulo"]?.toString(),
       descricao: this.tarefaFormGroup.value["descricao"]?.toString(),
       data_vencimento: this.tarefaFormGroup.value["data_vencimento"]?.toISOString(),
       status: this.tarefaFormGroup.value["status"]? 
                 parseInt(this.tarefaFormGroup.value["status"].toString()) : 0,
-    }).subscribe({
-      error: (e) => this.toast.danger("Erro desconhecido."),
+    };
+
+    if(this.tarefaFormGroup.value["id"] != '')
+      this.editTarefa(tarefa);
+    else
+      this.createTarefa(tarefa);
+  }
+  
+  private getTarefa(id: number) {
+    this._tarefaService.get(id).subscribe(
+      tarefa => this.setTarefaFormGroupValue(tarefa)
+    );
+  }
+
+  private createTarefa(tarefa:Tarefa) {
+    this._tarefaService.post(tarefa).subscribe({
+      error: (e) => this._toastService.danger("Erro desconhecido."),
       complete: () => { 
-        this.toast.success("Tarefa Salva.");
-        setInterval( () =>this.router.navigate(['/list']), 500)
+        this._toastService.success("Tarefa Salva.");
+        setTimeout(() => this._router.navigate(['/list']), 2000)
       }
     });
   }
 
-  editTarefa() {
-    throw new Error('Method not implemented.');
+  private editTarefa(tarefa:Tarefa) {
+    this._tarefaService.put(tarefa).subscribe({
+      error: (e) => this._toastService.danger("Erro desconhecido."),
+      complete: () => { 
+        this._toastService.success("Tarefa Salva.");
+        setTimeout(() => this._router.navigate(['/list']), 2000)
+      }
+    });
   }
 
   private setTarefaFormGroupValue(tarefa: Tarefa) {
