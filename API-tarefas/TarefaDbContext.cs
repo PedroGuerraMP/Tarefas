@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata;
 
 namespace API_tarefas
 {
@@ -10,20 +8,14 @@ namespace API_tarefas
     {
         public DbSet<Tarefa> Tarefas { get; set; }
 
-        public string DbPath { get; }
-
-        public TarefaDbContext()
+        public TarefaDbContext(DbContextOptions<TarefaDbContext> options) : base(options)
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "tarefas.db");
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={DbPath}");
     }
 
-    public class Tarefa
+    public class Tarefa 
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,6 +24,5 @@ namespace API_tarefas
         public string descricao { get; set; }
         public DateTime data_vencimento { get; set; }
         public int status { get; set; }
-
     }
 }

@@ -1,18 +1,17 @@
 using API_tarefas;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddDbContext<TarefaDbContext>(e => e.UseSqlServer(@"Server=DESKTOP-OE82CQ7\SQLEXPRESS;Database=TarefaDb;Trusted_Connection=True;TrustServerCertificate=true"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEntityFrameworkSqlite().AddDbContext<TarefaDbContext>();
 builder.Services.AddCors();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
