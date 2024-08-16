@@ -27,7 +27,7 @@ namespace API_tarefas.Controllers
             return await _context.Tarefas.ToArrayAsync();
         }
 
-        [HttpGet("id", Name = "GetTarefa")]
+        [HttpGet("{id?}", Name = "GetTarefa")]
         public async Task<ActionResult<Tarefa?>> Get(int id)
         {
             return await _context.Tarefas.FindAsync(id);
@@ -60,7 +60,7 @@ namespace API_tarefas.Controllers
             return CreatedAtAction(nameof(PutTarefa), tarefa);
         }
 
-        [HttpDelete(Name = "DeleteTarefas")]
+        [HttpDelete("{id?}", Name = "DeleteTarefas")]
         public async Task<ActionResult<bool>> DeleteTarefa(int id)
         {
             var tarefa = await _context.Tarefas.FirstOrDefaultAsync(t => t.id == id);
@@ -75,3 +75,5 @@ namespace API_tarefas.Controllers
         }
     }
 }
+
+
