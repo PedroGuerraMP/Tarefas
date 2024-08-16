@@ -45,12 +45,22 @@ No Visual Studio, lembre-se de executar o projeto com a configuração http
 
 O sistema foi desenvolvido seguindo os conceitos de Clean Architecture.
 
-O projeto cliente contem a versão mais atual do Angular (18) até a data. O projeto segue o padrão de componentes `standalones` como recomendado pela própria empresa para desenvolvimento em novas versões. Isso traz algumas mudanças na injeção de dependência dos módulos utilizados. 
-O projeto está divido em 3 camadas: a camada de domínio, com os modelos definidos em `/models`; a camada de aplicação onde as regras de negócio ficariam definidas em `/services`; e por fim, a camada de Apresentação, com os componentes definidos em `/components`.
+O projeto cliente contém a versão mais atual do Angular (18) até a data. 
+O projeto segue o padrão de componentes `standalones` como recomendado pela própria empresa para desenvolvimento em novas versões. Isso traz algumas mudanças na injeção de dependência dos módulos utilizados. 
+
+
+O projeto está divido em 3 camadas: 
+- A camada de domínio, com os modelos definidos em `/models`;
+- A camada de aplicação onde as regras de negócio ficariam definidas em `/services`;
+- E por fim, a camada de Apresentação, com os componentes definidos em `/components`.
+
 Além disso, na raiz do projeto, junto do componente raiz (com apenas `<router-outlet>`) e o arquivo de startup `main.ts`, está presente o `app.routes.ts` que define as rotas dos componentes utilizados.
 
 O projeto servidor realizado também com as versões mais atuais do .NET (8.0) e EntityFrameworkCore (8.0). 
-Segue uma arquitetura divida em 2 camadas: a camada de apresentação, com a definição dos endpoints da API, e a camada de Aplicação com o contexto e definição da entidade. 
+
+Segue uma arquitetura divida em 2 camadas: 
+- A camada de apresentação, com a definição dos endpoints da API, definidos em `/Controllers`;
+- E a camada de Aplicação com a definição do contexto e da entidade em `/Application` e as migrations, definidas em `/Migrations`. 
 
 Como escopo do projeto foi apenas 1 entidade, decidi por deixá-la junto ao contexto, mas em projetos reais o aconselhado é separar o context (Infraestutura) de qualquer definição de entidade (Domínio da Aplicação)
 
